@@ -27134,7 +27134,7 @@
 	            ),
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'menuCont' },
+	                { className: 'menuCont clearfix ' },
 	                _react2.default.createElement(
 	                    'ul',
 	                    null,

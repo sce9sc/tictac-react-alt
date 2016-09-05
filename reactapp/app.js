@@ -6,7 +6,7 @@ export default React.createClass({
         return (
             <div>
                 <h1>Tic Tac game example</h1>
-                <div className="menuCont">
+                <div className="menuCont clearfix ">
                     <ul>
                         <li><NavLink to="/" onlyActiveOnIndex>Home</NavLink></li>
                         <li><NavLink to="/about">About</NavLink></li>
