@@ -19,3 +19,6 @@ TODO
 
 
 This is using the latest modules since Today
+
+
+You can run it using "npm run start:dev" or "npm run start:prod"
