@@ -65,7 +65,7 @@ var GameBoard  = React.createClass({
     },
 
     render() {
-        return <div>
+        return <div className="gameCont clearfix">
             <div id='game'>
                 { this.state.tiles.map(function(tile,position){
                     return (

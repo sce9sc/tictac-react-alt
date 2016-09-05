@@ -18,10 +18,14 @@
   padding: 0;
   margin: 0;
   float: left;
-  outline: 1px solid #b4b4b4;
+  outline: 1px solid white;
 
 }
 
+.mainCont{
+  width: 500px;
+  margin: 0 auto;
+}
 
 .menuCont{
   margin-bottom: 10px;

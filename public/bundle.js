@@ -29664,7 +29664,7 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'gameCont clearfix' },
 	            _react2.default.createElement(
 	                'div',
 	                { id: 'game' },
