@@ -22,3 +22,8 @@ This is using the latest modules since Today
 
 
 You can run it using "npm run start:dev" or "npm run start:prod"
+
+When running in dev go to localhost:8080
+When running in prod go to localhost:3000
+
+
