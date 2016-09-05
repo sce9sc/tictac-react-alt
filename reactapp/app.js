@@ -5,13 +5,17 @@ export default React.createClass({
     render() {
         return (
             <div>
-            <h1>Tic Tac game example</h1>
-            <ul role="nav">
-                <li><NavLink to="/" onlyActiveOnIndex>Home</NavLink></li>
-                <li><NavLink to="/about">About</NavLink></li>
-            </ul>
-            {this.props.children}
-    </div>
+                <h1>Tic Tac game example</h1>
+                <div className="menuCont">
+                    <ul>
+                        <li><NavLink to="/" onlyActiveOnIndex>Home</NavLink></li>
+                        <li><NavLink to="/about">About</NavLink></li>
+                    </ul>
+                </div>
+                <div className="mainCont">
+                {this.props.children}
+                </div>
+            </div>
     )
     }
 })

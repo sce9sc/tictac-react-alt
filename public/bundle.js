@@ -27133,28 +27133,36 @@
 	                'Tic Tac game example'
 	            ),
 	            _react2.default.createElement(
-	                'ul',
-	                { role: 'nav' },
+	                'div',
+	                { className: 'menuCont' },
 	                _react2.default.createElement(
-	                    'li',
+	                    'ul',
 	                    null,
 	                    _react2.default.createElement(
-	                        _navLink2.default,
-	                        { to: '/', onlyActiveOnIndex: true },
-	                        'Home'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'li',
-	                    null,
+	                        'li',
+	                        null,
+	                        _react2.default.createElement(
+	                            _navLink2.default,
+	                            { to: '/', onlyActiveOnIndex: true },
+	                            'Home'
+	                        )
+	                    ),
 	                    _react2.default.createElement(
-	                        _navLink2.default,
-	                        { to: '/about' },
-	                        'About'
+	                        'li',
+	                        null,
+	                        _react2.default.createElement(
+	                            _navLink2.default,
+	                            { to: '/about' },
+	                            'About'
+	                        )
 	                    )
 	                )
 	            ),
-	            this.props.children
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'mainCont' },
+	                this.props.children
+	            )
 	        );
 	    }
 	});
@@ -29535,7 +29543,7 @@
 /* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -29548,12 +29556,30 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	    displayName: 'about',
+	    displayName: "about",
 	    render: function render() {
 	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            'About'
+	            "div",
+	            { id: "about" },
+	            _react2.default.createElement(
+	                "h1",
+	                null,
+	                "About"
+	            ),
+	            _react2.default.createElement(
+	                "div",
+	                null,
+	                _react2.default.createElement(
+	                    "p",
+	                    null,
+	                    "This is an example of tic tac game using react and alt as a flux implementation"
+	                ),
+	                _react2.default.createElement(
+	                    "p",
+	                    null,
+	                    "This example is also using react-router and webpack"
+	                )
+	            )
 	        );
 	    }
 	});
