@@ -58,11 +58,11 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _about = __webpack_require__(335);
+	var _about = __webpack_require__(336);
 
 	var _about2 = _interopRequireDefault(_about);
 
-	var _home = __webpack_require__(336);
+	var _home = __webpack_require__(337);
 
 	var _home2 = _interopRequireDefault(_home);
 
@@ -27130,7 +27130,7 @@
 	            _react2.default.createElement(
 	                'h1',
 	                null,
-	                'React Router Tutorial asda'
+	                'Tic Tac game example'
 	            ),
 	            _react2.default.createElement(
 	                'ul',
@@ -27241,9 +27241,9 @@
 
 	var _bootstrapUtils = __webpack_require__(329);
 
-	var _StyleConfig = __webpack_require__(333);
+	var _StyleConfig = __webpack_require__(334);
 
-	var _SafeAnchor = __webpack_require__(334);
+	var _SafeAnchor = __webpack_require__(335);
 
 	var _SafeAnchor2 = _interopRequireDefault(_SafeAnchor);
 
@@ -29078,13 +29078,13 @@
 	exports.splitBsPropsAndOmit = splitBsPropsAndOmit;
 	exports.addStyle = addStyle;
 
-	var _invariant = __webpack_require__(180);
+	var _invariant = __webpack_require__(333);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
 	var _react = __webpack_require__(1);
 
-	var _StyleConfig = __webpack_require__(333);
+	var _StyleConfig = __webpack_require__(334);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -29303,6 +29303,64 @@
 
 /***/ },
 /* 333 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+
+	'use strict';
+
+	/**
+	 * Use invariant() to assert state which your program assumes to be true.
+	 *
+	 * Provide sprintf-style format (only %s is supported) and arguments
+	 * to provide information about what broke and what you were
+	 * expecting.
+	 *
+	 * The invariant message will be stripped in production, but the invariant
+	 * will remain to ensure logic does not differ in production.
+	 */
+
+	var invariant = function(condition, format, a, b, c, d, e, f) {
+	  if (process.env.NODE_ENV !== 'production') {
+	    if (format === undefined) {
+	      throw new Error('invariant requires an error message argument');
+	    }
+	  }
+
+	  if (!condition) {
+	    var error;
+	    if (format === undefined) {
+	      error = new Error(
+	        'Minified exception occurred; use the non-minified dev environment ' +
+	        'for the full error message and additional helpful warnings.'
+	      );
+	    } else {
+	      var args = [a, b, c, d, e, f];
+	      var argIndex = 0;
+	      error = new Error(
+	        format.replace(/%s/g, function() { return args[argIndex++]; })
+	      );
+	      error.name = 'Invariant Violation';
+	    }
+
+	    error.framesToPop = 1; // we don't care about invariant's own frame
+	    throw error;
+	  }
+	};
+
+	module.exports = invariant;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 334 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29342,7 +29400,7 @@
 	};
 
 /***/ },
-/* 334 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29474,7 +29532,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 335 */
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29501,144 +29559,102 @@
 	});
 
 /***/ },
-/* 336 */
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _tile = __webpack_require__(337);
+	var _tile = __webpack_require__(338);
 
 	var _tile2 = _interopRequireDefault(_tile);
 
-	var _menu = __webpack_require__(338);
+	var _menu = __webpack_require__(339);
 
 	var _menu2 = _interopRequireDefault(_menu);
 
-	var _connectToStores = __webpack_require__(339);
-
-	var _connectToStores2 = _interopRequireDefault(_connectToStores);
-
-	var _homeStore = __webpack_require__(341);
+	var _homeStore = __webpack_require__(340);
 
 	var _homeStore2 = _interopRequireDefault(_homeStore);
 
-	var _homeActions = __webpack_require__(356);
+	var _homeActions = __webpack_require__(355);
 
 	var _homeActions2 = _interopRequireDefault(_homeActions);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var GameBoard = _react2.default.createClass({
+	    displayName: 'GameBoard',
+	    getInitialState: function getInitialState() {
+	        var storestate = _homeStore2.default.getState();
+	        return storestate;
+	    },
+	    componentDidMount: function componentDidMount() {
+	        _homeStore2.default.listen(this.onChange);
+	    },
+	    componentWillUnmount: function componentWillUnmount() {
+	        _homeStore2.default.unlisten(this.onChange);
+	    },
+	    onChange: function onChange(state) {
+	        this.setState(state);
+	    },
+	    checkBoard: function checkBoard() {
+	        var t = this.state.tiles;
+	        var check = function check(a, b, c) {
+	            return !!(a + b + c).match(/^(xxx|ooo)$/gi);
+	        };
+	        if (check(t[0], t[1], t[2])) return t[0];
+	        if (check(t[3], t[4], t[5])) return t[3];
+	        if (check(t[6], t[7], t[8])) return t[6];
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	        if (check(t[0], t[3], t[6])) return t[0];
+	        if (check(t[1], t[4], t[7])) return t[1];
+	        if (check(t[2], t[5], t[8])) return t[2];
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	        if (check(t[0], t[4], t[8])) return t[0];
+	        if (check(t[2], t[4], t[6])) return t[2];
 
-	var GameBoard = function (_Component) {
-	    _inherits(GameBoard, _Component);
+	        if (t.join('').length === 9) return 'd';
+	        return 'n';
+	    },
+	    tileClick: function tileClick(position, player) {
 
-	    function GameBoard() {
-	        _classCallCheck(this, GameBoard);
+	        var tiles = this.state.tiles;
+	        //If the selected position is already filled, return to prevent it being replaced.
+	        if (tiles[position] === 'x' || tiles[position] === 'o' || this.state.winner !== 'n') return;
+	        tiles[position] = player;
 
-	        return _possibleConstructorReturn(this, (GameBoard.__proto__ || Object.getPrototypeOf(GameBoard)).apply(this, arguments));
-	    }
+	        _homeActions2.default.updateState({ tiles: tiles, turn: player === 'o' ? 'x' : 'o', winner: this.checkBoard() });
 
-	    _createClass(GameBoard, [{
-	        key: 'checkBoard',
-
-
-	        // getInitialState(){
-	        //
-	        //     return {
-	        //         tiles:['','','',
-	        //          '','','',
-	        //          '','','',
-	        //         ],
-	        //         turn:'o',
-	        //         winner: 'n'
-	        //     }
-	        // }
-
-	        value: function checkBoard() {
-	            var t = this.props.tiles;
-	            var check = function check(a, b, c) {
-	                return !!(a + b + c).match(/^(xxx|ooo)$/gi);
-	            };
-	            if (check(t[0], t[1], t[2])) return t[0];
-	            if (check(t[3], t[4], t[5])) return t[3];
-	            if (check(t[6], t[7], t[8])) return t[6];
-
-	            if (check(t[0], t[3], t[6])) return t[0];
-	            if (check(t[1], t[4], t[7])) return t[1];
-	            if (check(t[2], t[5], t[8])) return t[2];
-
-	            if (check(t[0], t[4], t[8])) return t[0];
-	            if (check(t[2], t[4], t[6])) return t[2];
-
-	            if (t.join('').length === 9) return 'd';
-	            return 'n';
-	        }
-	    }, {
-	        key: 'tileClick',
-	        value: function tileClick(position, player) {
-	            var d = this.getPropsFromStores();
-	            var tiles = this.props.tiles;
-	            //If the selected position is already filled, return to prevent it being replaced.
-	            if (tiles[position] === 'x' || tiles[position] === 'o' || this.state.winner !== 'n') return;
-	            tiles[position] = player;
-
-	            _homeActions2.default.updateState({ tiles: tiles, turn: player === 'o' ? 'x' : 'o', winner: this.checkBoard() });
-
-	            //this.setState({tiles: tiles, turn: player === 'o' ? 'x' : 'o', winner: this.checkBoard()});
-	        }
-	    }, {
-	        key: 'resetGame',
-	        value: function resetGame() {
-	            _homeActions2.default.reset();
-	            //this.setState(this.getInitialState());
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
+	        //this.setState({tiles: tiles, turn: player === 'o' ? 'x' : 'o', winner: this.checkBoard()});
+	    },
+	    resetGame: function resetGame() {
+	        _homeActions2.default.reset();
+	        //this.setState(this.getInitialState());
+	    },
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
 	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'div',
-	                    { id: 'game' },
-	                    this.props.tiles.map(function (tile, position) {
-	                        console.log('adadsad = ', tile + '-' + position);
-	                        return _react2.default.createElement(_tile2.default, { key: position, status: tile, keypos: position, turn: this.props.turn, tileClick: this.tileClick });
-	                    }, this)
-	                ),
-	                _react2.default.createElement(_menu2.default, { turn: this.props.turn, winner: this.props.winner, resetAction: this.resetGame })
-	            );
-	        }
-	    }], [{
-	        key: 'getStores',
-	        value: function getStores() {
-	            return [_homeStore2.default];
-	        }
-	    }, {
-	        key: 'getPropsFromStores',
-	        value: function getPropsFromStores() {
-	            return _homeStore2.default.getState();
-	        }
-	    }]);
+	                { id: 'game' },
+	                this.state.tiles.map(function (tile, position) {
+	                    return _react2.default.createElement(_tile2.default, { key: position, status: tile, keypos: position, turn: this.state.turn, tileClick: this.tileClick });
+	                }, this)
+	            ),
+	            _react2.default.createElement(_menu2.default, { turn: this.state.turn, winner: this.state.winner, resetAction: this.resetGame })
+	        );
+	    }
+	});
 
-	    return GameBoard;
-	}(_react.Component);
-
-	module.exports = (0, _connectToStores2.default)(GameBoard);
+	module.exports = GameBoard;
 
 /***/ },
-/* 337 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29670,7 +29686,7 @@
 	module.exports = Tile;
 
 /***/ },
-/* 338 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29719,177 +29735,7 @@
 	module.exports = Menu;
 
 /***/ },
-/* 339 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * 'Higher Order Component' that controls the props of a wrapped
-	 * component via stores.
-	 *
-	 * Expects the Component to have two static methods:
-	 *   - getStores(): Should return an array of stores.
-	 *   - getPropsFromStores(props): Should return the props from the stores.
-	 *
-	 * Example using old React.createClass() style:
-	 *
-	 *    const MyComponent = React.createClass({
-	 *      statics: {
-	 *        getStores(props) {
-	 *          return [myStore]
-	 *        },
-	 *        getPropsFromStores(props) {
-	 *          return myStore.getState()
-	 *        }
-	 *      },
-	 *      render() {
-	 *        // Use this.props like normal ...
-	 *      }
-	 *    })
-	 *    MyComponent = connectToStores(MyComponent)
-	 *
-	 *
-	 * Example using ES6 Class:
-	 *
-	 *    class MyComponent extends React.Component {
-	 *      static getStores(props) {
-	 *        return [myStore]
-	 *      }
-	 *      static getPropsFromStores(props) {
-	 *        return myStore.getState()
-	 *      }
-	 *      render() {
-	 *        // Use this.props like normal ...
-	 *      }
-	 *    }
-	 *    MyComponent = connectToStores(MyComponent)
-	 *
-	 * A great explanation of the merits of higher order components can be found at
-	 * http://bit.ly/1abPkrP
-	 */
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _functions = __webpack_require__(340);
-
-	function connectToStores(Spec) {
-	  var Component = arguments.length <= 1 || arguments[1] === undefined ? Spec : arguments[1];
-	  return (function () {
-	    // Check for required static methods.
-	    if (!(0, _functions.isFunction)(Spec.getStores)) {
-	      throw new Error('connectToStores() expects the wrapped component to have a static getStores() method');
-	    }
-	    if (!(0, _functions.isFunction)(Spec.getPropsFromStores)) {
-	      throw new Error('connectToStores() expects the wrapped component to have a static getPropsFromStores() method');
-	    }
-
-	    var StoreConnection = _react2['default'].createClass({
-	      displayName: 'Stateful' + (Component.displayName || Component.name || 'Container'),
-
-	      getInitialState: function getInitialState() {
-	        return Spec.getPropsFromStores(this.props, this.context);
-	      },
-
-	      componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-	        this.setState(Spec.getPropsFromStores(nextProps, this.context));
-	      },
-
-	      componentDidMount: function componentDidMount() {
-	        var _this = this;
-
-	        var stores = Spec.getStores(this.props, this.context);
-	        this.storeListeners = stores.map(function (store) {
-	          return store.listen(_this.onChange);
-	        });
-	        if (Spec.componentDidConnect) {
-	          Spec.componentDidConnect(this.props, this.context);
-	        }
-	      },
-
-	      componentWillUnmount: function componentWillUnmount() {
-	        this.storeListeners.forEach(function (unlisten) {
-	          return unlisten();
-	        });
-	      },
-
-	      onChange: function onChange() {
-	        this.setState(Spec.getPropsFromStores(this.props, this.context));
-	      },
-
-	      render: function render() {
-	        return _react2['default'].createElement(Component, (0, _functions.assign)({}, this.props, this.state));
-	      }
-	    });
-	    if (Component.contextTypes) {
-	      StoreConnection.contextTypes = Component.contextTypes;
-	    }
-
-	    return StoreConnection;
-	  })();
-	}
-
-	exports['default'] = connectToStores;
-	module.exports = exports['default'];
-
-/***/ },
 /* 340 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports.isPojo = isPojo;
-	exports.isPromise = isPromise;
-	exports.eachObject = eachObject;
-	exports.assign = assign;
-	var isFunction = function isFunction(x) {
-	  return typeof x === 'function';
-	};
-
-	exports.isFunction = isFunction;
-
-	function isPojo(target) {
-	  var Ctor = target.constructor;
-
-	  return !!target && typeof target === 'object' && Object.prototype.toString.call(target) === '[object Object]' && isFunction(Ctor) && (Ctor instanceof Ctor || target.type === 'AltStore');
-	}
-
-	function isPromise(obj) {
-	  return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
-	}
-
-	function eachObject(f, o) {
-	  o.forEach(function (from) {
-	    Object.keys(Object(from)).forEach(function (key) {
-	      f(key, from[key]);
-	    });
-	  });
-	}
-
-	function assign(target) {
-	  for (var _len = arguments.length, source = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	    source[_key - 1] = arguments[_key];
-	  }
-
-	  eachObject(function (key, value) {
-	    return target[key] = value;
-	  }, source);
-	  return target;
-	}
-
-/***/ },
-/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29900,11 +29746,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _alt = __webpack_require__(342);
+	var _alt = __webpack_require__(341);
 
 	var _alt2 = _interopRequireDefault(_alt);
 
-	var _homeActions = __webpack_require__(356);
+	var _homeActions = __webpack_require__(355);
 
 	var _homeActions2 = _interopRequireDefault(_homeActions);
 
@@ -29930,8 +29776,8 @@
 
 	    _createClass(HomeStore, [{
 	        key: 'updateState',
-	        value: function updateState(tiles) {
-	            this.setState({ tiles: tiles });
+	        value: function updateState(newstate) {
+	            this.setState({ tiles: newstate.state.tiles, turn: newstate.state.turn, winner: newstate.state.winner });
 	        }
 	    }, {
 	        key: 'reset',
@@ -29939,7 +29785,8 @@
 	            this.setState({
 	                tiles: ['', '', '', '', '', '', '', '', ''],
 	                turn: 'o',
-	                winner: 'n' });
+	                winner: 'n'
+	            });
 	        }
 	    }]);
 
@@ -29947,6 +29794,24 @@
 	}();
 
 	exports.default = _alt2.default.createStore(HomeStore, 'HomeStore');
+
+/***/ },
+/* 341 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _alt = __webpack_require__(342);
+
+	var _alt2 = _interopRequireDefault(_alt);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = new _alt2.default();
 
 /***/ },
 /* 342 */
@@ -29958,43 +29823,25 @@
 	  value: true
 	});
 
-	var _alt = __webpack_require__(343);
+	var _flux = __webpack_require__(343);
 
-	var _alt2 = _interopRequireDefault(_alt);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = new _alt2.default();
-
-/***/ },
-/* 343 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _flux = __webpack_require__(344);
-
-	var _StateFunctions = __webpack_require__(347);
+	var _StateFunctions = __webpack_require__(346);
 
 	var StateFunctions = _interopRequireWildcard(_StateFunctions);
 
-	var _functions = __webpack_require__(348);
+	var _functions = __webpack_require__(347);
 
 	var fn = _interopRequireWildcard(_functions);
 
-	var _store = __webpack_require__(349);
+	var _store = __webpack_require__(348);
 
 	var store = _interopRequireWildcard(_store);
 
-	var _AltUtils = __webpack_require__(350);
+	var _AltUtils = __webpack_require__(349);
 
 	var utils = _interopRequireWildcard(_AltUtils);
 
-	var _actions = __webpack_require__(354);
+	var _actions = __webpack_require__(353);
 
 	var _actions2 = _interopRequireDefault(_actions);
 
@@ -30349,7 +30196,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 344 */
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -30361,11 +30208,11 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 
-	module.exports.Dispatcher = __webpack_require__(345);
+	module.exports.Dispatcher = __webpack_require__(344);
 
 
 /***/ },
-/* 345 */
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -30387,7 +30234,7 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-	var invariant = __webpack_require__(346);
+	var invariant = __webpack_require__(345);
 
 	var _prefix = 'ID_';
 
@@ -30602,7 +30449,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 346 */
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -30657,7 +30504,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 347 */
+/* 346 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30670,7 +30517,7 @@
 	exports.saveInitialSnapshot = saveInitialSnapshot;
 	exports.filterSnapshots = filterSnapshots;
 
-	var _functions = __webpack_require__(348);
+	var _functions = __webpack_require__(347);
 
 	var fn = _interopRequireWildcard(_functions);
 
@@ -30734,7 +30581,7 @@
 	}
 
 /***/ },
-/* 348 */
+/* 347 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30775,7 +30622,7 @@
 	}
 
 /***/ },
-/* 349 */
+/* 348 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30788,19 +30635,19 @@
 	exports.createStoreFromObject = createStoreFromObject;
 	exports.createStoreFromClass = createStoreFromClass;
 
-	var _AltUtils = __webpack_require__(350);
+	var _AltUtils = __webpack_require__(349);
 
 	var utils = _interopRequireWildcard(_AltUtils);
 
-	var _functions = __webpack_require__(348);
+	var _functions = __webpack_require__(347);
 
 	var fn = _interopRequireWildcard(_functions);
 
-	var _AltStore = __webpack_require__(351);
+	var _AltStore = __webpack_require__(350);
 
 	var _AltStore2 = _interopRequireDefault(_AltStore);
 
-	var _StoreMixin = __webpack_require__(353);
+	var _StoreMixin = __webpack_require__(352);
 
 	var _StoreMixin2 = _interopRequireDefault(_StoreMixin);
 
@@ -30992,7 +30839,7 @@
 	}
 
 /***/ },
-/* 350 */
+/* 349 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31011,7 +30858,7 @@
 	exports.fsa = fsa;
 	exports.dispatch = dispatch;
 
-	var _functions = __webpack_require__(348);
+	var _functions = __webpack_require__(347);
 
 	var fn = _interopRequireWildcard(_functions);
 
@@ -31113,7 +30960,7 @@
 	function NoopClass() {}
 
 /***/ },
-/* 351 */
+/* 350 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31122,11 +30969,11 @@
 	  value: true
 	});
 
-	var _functions = __webpack_require__(348);
+	var _functions = __webpack_require__(347);
 
 	var fn = _interopRequireWildcard(_functions);
 
-	var _transmitter = __webpack_require__(352);
+	var _transmitter = __webpack_require__(351);
 
 	var _transmitter2 = _interopRequireDefault(_transmitter);
 
@@ -31280,7 +31127,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 352 */
+/* 351 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -31337,7 +31184,7 @@
 	module.exports = transmitter;
 
 /***/ },
-/* 353 */
+/* 352 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31346,11 +31193,11 @@
 	  value: true
 	});
 
-	var _transmitter = __webpack_require__(352);
+	var _transmitter = __webpack_require__(351);
 
 	var _transmitter2 = _interopRequireDefault(_transmitter);
 
-	var _functions = __webpack_require__(348);
+	var _functions = __webpack_require__(347);
 
 	var fn = _interopRequireWildcard(_functions);
 
@@ -31579,7 +31426,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 354 */
+/* 353 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31589,15 +31436,15 @@
 	});
 	exports['default'] = makeAction;
 
-	var _functions = __webpack_require__(348);
+	var _functions = __webpack_require__(347);
 
 	var fn = _interopRequireWildcard(_functions);
 
-	var _AltUtils = __webpack_require__(350);
+	var _AltUtils = __webpack_require__(349);
 
 	var utils = _interopRequireWildcard(_AltUtils);
 
-	var _isPromise = __webpack_require__(355);
+	var _isPromise = __webpack_require__(354);
 
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 
@@ -31666,7 +31513,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 355 */
+/* 354 */
 /***/ function(module, exports) {
 
 	module.exports = isPromise;
@@ -31677,7 +31524,7 @@
 
 
 /***/ },
-/* 356 */
+/* 355 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31688,7 +31535,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _alt = __webpack_require__(342);
+	var _alt = __webpack_require__(341);
 
 	var _alt2 = _interopRequireDefault(_alt);
 
@@ -31703,13 +31550,13 @@
 
 	    _createClass(HomeActions, [{
 	        key: 'updateState',
-	        value: function updateState(id, text) {
-	            return { id: id, text: text };
+	        value: function updateState(state) {
+	            return { state: state };
 	        }
 	    }, {
 	        key: 'reset',
-	        value: function reset(id, text) {
-	            return { id: id, text: text };
+	        value: function reset() {
+	            return {};
 	        }
 	    }]);
 
